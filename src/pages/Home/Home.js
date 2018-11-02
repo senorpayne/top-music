@@ -7,6 +7,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import cheerio from 'cheerio';
 import request from 'request'
+import puppeteer from 'puppeteer';
 
 
 class Articles extends Component {
@@ -18,18 +19,21 @@ class Articles extends Component {
 
   // Add code here to get all books from the database and save them to this.state.books
 
-    componentDidMount() {
-    this.loadSongs();
+    async componentDidMount() {
+    this.loadBandcamp()
+    
    // this.loadSaved();
   };
 
-  loadSongs = () => {
-      this.loadBandcamp();
+  
 
-    
-  };
-
-  loadBandcamp = () =>{
+  async loadBandcamp () {
+  const browser = await puppeteer.launch({headless:true});
+  const page = await browser.newPage();
+  await page.goto('https://bandcamp.com/');
+  await page.setViewport({width:1000,height:500});
+  await page.screenshot({path: 'bandcamp.png'});
+  await browser.close();
       
 
   }
