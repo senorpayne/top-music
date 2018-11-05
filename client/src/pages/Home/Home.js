@@ -8,6 +8,7 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import cheerio from 'cheerio';
 import request from 'request'
 import puppeteer from 'puppeteer';
+// import puppeteer-core from 'puppeteer-core';
 
 
 class Articles extends Component {
